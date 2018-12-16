@@ -1,0 +1,66 @@
+%12/07/98 S. J. Chapman Original code
+%calculate the progress of a year
+disp('this program calculates the progress of a year');
+year=input('输入年(yyyy):');
+month=input('输入月(1-12):');
+day=input('输入日(1-31):');
+%check for leak year(修正闰年)
+if mod(year,400)==0
+    leap_day=1;
+elseif mod(year,100)==0
+    leap_day=0;
+elseif mod(year,4)==0
+    leap_day=1;
+else
+    leap_day=0;
+end
+%calculate day of year
+day_of_year=day;
+for i=1:month-1
+    %add days in month form January to last month
+    switch(i)
+        case{1,3,5,7,8,10,12}
+            day_of_year=day_of_year+31;
+        case{4,6,9,11}
+            day_of_year=day_of_year+30;
+        case 2
+            day_of_year=day_of_year+28+leap_day;
+    end
+end
+if mod(year,400)==0
+    progress=day_of_year/366*100;
+    left=366-day_of_year;
+    x=1:1:day_of_year;
+    y=0;
+    plot(x,y,'p')
+    axis([1 366 -1 1 ])
+    title('使用进度')
+elseif mod(year,100)==0
+    progress=day_of_year/365*100;
+    left=365-day_of_year;
+    x=1:1:day_of_year;
+    y=0;
+    plot(x,y,'p')
+    axis([1 365 -1 1 ])
+    title('使用进度')
+elseif mod(year,4)==0
+    progress=day_of_year/366*100;
+    left=366-day_of_year;
+    x=1:1:day_of_year;
+    y=0;
+    plot(x,y,'p')
+    axis([1 366 -1 1 ])
+    title('使用进度')
+else
+    progress=day_of_year/365*100;
+    left=365-day_of_year;
+    x=1:1:day_of_year;
+    y=0;
+    plot(x,y,'p')
+    axis([1 365 -1 1 ])
+    title('使用进度')
+end
+%output
+fprintf('%d年已经过去了%d天\n',year,day_of_year);
+fprintf('%d年还剩%d天\n',year,left);
+fprintf('%d年的使用进度是%.2f%%\n',year,progress);%保留两位小数
