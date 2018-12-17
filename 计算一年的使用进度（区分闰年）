@@ -32,33 +32,33 @@ if mod(year,400)==0
     left=366-day_of_year;
     x=1:1:day_of_year;
     y=0;
-    plot(x,y,'p')
+    plot(x,y,'s')
     axis([1 366 -1 1 ])
-    title('使用进度')
+    title([num2str(year),'年的使用进度'])
 elseif mod(year,100)==0
     progress=day_of_year/365*100;
     left=365-day_of_year;
     x=1:1:day_of_year;
     y=0;
-    plot(x,y,'p')
+    plot(x,y,'s')
     axis([1 365 -1 1 ])
-    title('使用进度')
+    title([num2str(year),'年的使用进度'])
 elseif mod(year,4)==0
     progress=day_of_year/366*100;
     left=366-day_of_year;
     x=1:1:day_of_year;
     y=0;
-    plot(x,y,'p')
+    plot(x,y,'s')
     axis([1 366 -1 1 ])
-    title('使用进度')
+    title([num2str(year),'年的使用进度'])
 else
     progress=day_of_year/365*100;
     left=365-day_of_year;
     x=1:1:day_of_year;
     y=0;
-    plot(x,y,'p')
+    plot(x,y,'s')
     axis([1 365 -1 1 ])
-    title('使用进度')
+    title([num2str(year),'年的使用进度'])
 end
 %output
 fprintf('%d年已经过去了%d天\n',year,day_of_year);
