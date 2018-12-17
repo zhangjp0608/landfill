@@ -1,0 +1,43 @@
+% 01/03/99 S. J. Chapman Original code 
+% 用最小二乘法画噪声数据的近似曲线 y_bar=b*x_bar+m
+disp('This program performs a leastsquares fit of an '); 
+disp('input data set to a straight line.'); 
+n=input('Enter the number of input [x y]');
+%read in data
+for i=1:n
+    temp=input('Enter [x y] pair:');%输入需要带[ ],数字间以空格隔开
+    x(i)=temp(1);
+    y(i)=temp(2);
+end
+sum_x=0;
+sum_y=0;
+sum_x2=0;
+sum_xy=0;
+for i=1:n
+    sum_x=sum_x+x(i);
+    sum_y=sum_y+y(i);
+    sum_x2=sum_x2+x(i)^2;
+    sum_xy=sum_xy+x(i)*y(i);
+end
+x_bar=sum_x/n;
+y_bar=sum_y/n;
+slope=(sum_xy-sum_x*y_bar)/(sum_x2-sum_x*x_bar); %m
+y_int=y_bar-slope*x_bar;%b
+%output
+disp('Regression coefficients for the leastsquares line:'); 
+fprintf(' Slope (m) = %8.3f\n', slope); 
+fprintf(' Intercept (b) = %8.3f\n', y_int); 
+fprintf(' Nomber of points = %8d\n', n); 
+plot(x,y,'o')
+hold on
+xmin = min(x); 
+xmax = max(x); 
+ymin = slope * xmin + y_int;
+ymax = slope * xmax + y_int; 
+plot([xmin xmax],[ymin ymax],'r','LineWidth',2); 
+hold off
+title ('\bfLeastSquaresFit'); 
+xlabel('\bf\itx'); 
+ylabel('\bf\ity'); 
+legend('Input data','Fitted line'); 
+grid on 
